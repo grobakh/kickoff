@@ -13,3 +13,7 @@
 - [2025-12-01] kickoff – scanned project layout and configs, refreshed PROJECT.md and CODESTYLE.md.
 - [2025-12-01] TASK=add eslint and prettier to the project-SLUG – Added ESLint/Prettier configs and ignores (`.eslintrc.json`, `.eslintignore`, `.prettierrc.json`, `.prettierignore`), updated npm scripts and dev dependencies for lint/format, and documented scripts in README.
 - [2025-12-01] kickoff – rescanned docs/configs and updated PROJECT.md and CODESTYLE.md for lint/format workflows.
+- [2025-12-01] TASK=kickoff_todo_name_fix – Plan: correct todo prompt reference to `/prompts:kickoff-todo` in `src/prompts/kickoff.md`.
+- [2025-12-01] TASK=kickoff_todo_name_fix – Step 1: Located incorrect `/prompt/kickoff-todo` references at end of `src/prompts/kickoff.md`.
+- [2025-12-01] TASK=kickoff_todo_name_fix – Step 2: Updated todo command references to `/prompts:kickoff-todo` in `src/prompts/kickoff.md`.
+- [2025-12-01] TASK=kickoff_todo_name_fix – Step 3: Reviewed changes and updated plan/log entries (files: `.meta/PLAN-kickoff_todo_name_fix.md`, `.meta/LOG.md`).

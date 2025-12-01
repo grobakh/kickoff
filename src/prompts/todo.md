@@ -5,7 +5,7 @@ argument-hint: TASK=<short-name> $META_DIR=".meta"
 ---
 
 You are working in a repository that may define additional rules in AGENTS.md.
-The current task identifier is short alias `$TASK-SLUG` for the `$TASK`.
+The current task identifier is `$TASK-SLUG`, a concise snake_case alias derived from `$TASK`
 
 Your goals are to:
 
@@ -25,7 +25,7 @@ Your goals are to:
 2. Read all relevant `AGENTS.md` and then load, if present:
    - `$META_DIR/PROJECT.md`
    - `$META_DIR/CODESTYLE.md`
-   - `$META_DIR/PLAN-$TASK-SLUG.md`
+   - `$META_DIR/PLAN-{$TASK-SLUG}.md`
    - `$META_DIR/LOG.md`
 
 3. If `$META_DIR/PROJECT.md` or `$META_DIR/CODESTYLE.md` are missing:
@@ -38,6 +38,11 @@ Your goals are to:
 
 Before writing or modifying any plan for `$TASK`:
 
+0. Define `$TASK-SLUG` before planning:
+   - Derive a short snake_case slug from `$TASK` (drop filler words, keep it brief).
+   - If the task description is long or ambiguous, propose or ask for a slug instead of using the full text.
+   - Use `$TASK-SLUG` for plan filenames (`PLAN-{$TASK-SLUG}.md`), logs, and references.
+
 1. Ask me targeted questions to clarify:
    - What exactly needs to be done for `$TASK`.
    - Success criteria / acceptance conditions.
@@ -49,7 +54,7 @@ Before writing or modifying any plan for `$TASK`:
 
 ## 2. Create or update a detailed, resumable plan
 
-The plan for `$TASK` lives in `$META_DIR/PLAN-$TASK-SLUG.md` as a checklist.
+The plan for `$TASK` lives in `$META_DIR/PLAN-{$TASK-SLUG}.md` as a checklist.
 Scan for the almost the similar names of the Task.
 
 1. If the file does not exist, create it with at least this structure:
@@ -86,7 +91,7 @@ Scan for the almost the similar names of the Task.
 
 ## 3. Execute the plan step by step (resumable)
 
-1. Determine the current step as the first checklist item with [ ] in `$META_DIR/PLAN-$TASK-SLUG.md`.
+1. Determine the current step as the first checklist item with [ ] in `$META_DIR/PLAN-{$TASK-SLUG}.md`.
 
 2. For the current step:
 
@@ -104,7 +109,7 @@ Scan for the almost the similar names of the Task.
 
 3. After completing a step:
 
-- Update `$META_DIR/PLAN-$TASK-SLUG.md` to mark that step as [x].
+- Update `$META_DIR/PLAN-{$TASK-SLUG}.md` to mark that step as [x].
 
 ## 4. Log
 
@@ -112,19 +117,19 @@ Scan for the almost the similar names of the Task.
 
 1. Log record to the `$META_DIR/LOG.md` when PLAN is ready.
     - Date/time (if practical).
-    - TASK-SLUG=`$TASK-SLUG`.
+    - TASK-SLUG=`{$TASK-SLUG}`.
     - TASK=`$TASK`.
     - Short description of the plan.
 
 2. After completing a stepAppend an entry to `$META_DIR/LOG.md` including:
     - Date/time (if practical).
-    - TASK-SLUG=`$TASK-SLUG`.
+    - TASK-SLUG=`{$TASK-SLUG}`.
     - TASK=`$TASK`.
     - Step identifier or short description.
     - Files touched and a short summary of the change.
       Example:
    ```markdown
-   - [YYYY-MM-DD] TASK=$TASK-SLUG – Step 2: Implemented FooBarService in
+   - [YYYY-MM-DD] TASK={$TASK-SLUG} – Step 2: Implemented FooBarService in
      `src/services/fooBarService.ts`, updated `src/routes/foo.ts`.
    ```
 
@@ -141,7 +146,7 @@ Scan for the almost the similar names of the Task.
 - Implement it, update the plan and log, and stage changes as above.
 2.  If the session is interrupted and this prompt is invoked again with the same $TASK:
 
-- Re-read `$META_DIR/PLAN-$TASK-SLUG.md` and `$META_DIR/LOG.md`.
+- Re-read `$META_DIR/PLAN-{$TASK-SLUG}.md` and `$META_DIR/LOG.md`.
 - Identify the first [ ] step.
 - Resume from that step rather than starting a new plan.
 
