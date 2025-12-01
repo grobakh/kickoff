@@ -134,6 +134,7 @@ Do not delete useful existing content; update and extend instead.
    like prettier, lint fix, etc so new written code by agent will be aligned with existing code base.
 
 ## 3. Log the kickoff
+0. Log file only append only! NEVER remove any existing record from it!
 
 1. Append a brief entry to `$META_DIR/LOG.md` describing:
    - That the kickoff scan was executed.

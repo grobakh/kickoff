@@ -5,7 +5,7 @@ argument-hint: TASK=<short-name> $META_DIR=".meta"
 ---
 
 You are working in a repository that may define additional rules in AGENTS.md.
-The current task identifier is `$TASK`.
+The current task identifier is short alias `$TASK-SLUG` for the `$TASK`.
 
 Your goals are to:
 - Understand general rules and per project rules.
@@ -24,7 +24,7 @@ Your goals are to:
 2. Read all relevant `AGENTS.md` and then load, if present:
    - `$META_DIR/PROJECT.md`
    - `$META_DIR/CODESTYLE.md`
-   - `$META_DIR/PLAN-$TASK.md`
+   - `$META_DIR/PLAN-$TASK-SLUG.md`
    - `$META_DIR/LOG.md`
 
 3. If `$META_DIR/PROJECT.md` or `$META_DIR/CODESTYLE.md` are missing:
@@ -48,7 +48,7 @@ Before writing or modifying any plan for `$TASK`:
 
 ## 2. Create or update a detailed, resumable plan
 
-The plan for `$TASK` lives in `$META_DIR/PLAN-$TASK.md` as a checklist.
+The plan for `$TASK` lives in `$META_DIR/PLAN-$TASK-SLUG.md` as a checklist.
 Scan for the almost the similar names of the Task.
 
 1. If the file does not exist, create it with at least this structure:
@@ -80,7 +80,7 @@ Scan for the almost the similar names of the Task.
 
 ## 3. Execute the plan step by step (resumable)
 
-1. Determine the current step as the first checklist item with [ ] in `$META_DIR/PLAN-$TASK.md`.
+1. Determine the current step as the first checklist item with [ ] in `$META_DIR/PLAN-$TASK-SLUG.md`.
 
 2. For the current step:
 
@@ -97,34 +97,39 @@ Scan for the almost the similar names of the Task.
   - Make the necessary code changes for this step.
 
 3. After completing a step:
-  - Update `$META_DIR/PLAN-$TASK.md` to mark that step as [x].
-  - Append an entry to `$META_DIR/LOG.md` including:
+  - Update `$META_DIR/PLAN-$TASK-SLUG.md` to mark that step as [x].
+
+## 4. Log
+0. Log file only append only! NEVER remove any existing record from it!
+
+1.  - Append an entry to `$META_DIR/LOG.md` including:
    - Date/time (if practical).
-   - TASK=$TASK.
+   - TASK=$TASK-SLUG.
    - Step identifier or short description.
    - Files touched and a short summary of the change.
      Example:
    ```markdown
 
-- [YYYY-MM-DD] TASK=$TASK – Step 2: Implemented FooBarService in
+- [YYYY-MM-DD] TASK=$TASK-SLUG – Step 2: Implemented FooBarService in
   `src/services/fooBarService.ts`, updated `src/routes/foo.ts`.
    ```
 
-4. Git behaviour:
+## 5. Git behaviour:
   -  You may run git status, git diff, and git add to stage the changes related to the current step.
   -  Do not run git commit, git commit --amend, git rebase, git tag, or git push
 unless I explicitly ask you to.
   - When staging, prefer to only stage files that actually belong to the step you just completed.
 
-5. Repeat:
+## 6. Repeat:
+1.
   - Move to the next [ ] step.
   - Implement it, update the plan and log, and stage changes as above.
-6. If the session is interrupted and this prompt is invoked again with the same $TASK:
-  - Re-read `$META_DIR/PLAN-$TASK.md` and `$META_DIR/LOG.md`.
+2. If the session is interrupted and this prompt is invoked again with the same $TASK:
+  - Re-read `$META_DIR/PLAN-$TASK-SLUG.md` and `$META_DIR/LOG.md`.
   - Identify the first [ ] step.
   - Resume from that step rather than starting a new plan.
 
-## 4. General rules
+## 7. General rules
   - Respect existing tools and configs (Prettier, ESLint, TypeScript, test frameworks).
   - Keep changes and logical units of work small and focused.
   - If something is unclear or risky, ask me before making large or breaking changes.

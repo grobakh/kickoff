@@ -1,0 +1,32 @@
+{
+  "name": "kickoff",
+  "version": "1.0.0",
+  "description": "Prompt toolkit and automation for agent deployments.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "deploy:codex": "npm run build --silent && tsx scripts/deploy-codex.ts",
+    "test": "echo \"No tests yet\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grobakh/kickoff.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/grobakh/kickoff/issues"
+  },
+  "homepage": "https://github.com/grobakh/kickoff#readme",
+  "config": {
+    "promptPrefix": "kickoff",
+    "codexPromptDir": "~/.codex/prompts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.1.3",
+    "typescript": "^5.3.3"
+  }
+}
