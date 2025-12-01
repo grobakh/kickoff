@@ -150,6 +150,6 @@ Do not delete useful existing content; update and extend instead.
 1. It is possible to rerun kickoff on the project again someday. It means you need to scan project and important files and update all documentation and log rerun.
 
 ## ON FINISH
-User can forget to run `todo` prompt to start the task.
- 1. Prompt user to run `todo` prompt to start working on his the task.
- 2. If he just inputs something - ask him if it is a task and if yes run this task throw 'todo' prompt.
+User can forget to run `/prompt/kickoff-todo` prompt to start the task.
+ 1. Prompt user to run `/prompt/kickoff-todo` prompt to start working on his the task.
+ 2. If he just inputs something - ask him if it is a task and if yes run this task with `/prompt/kickoff-todo` prompt.

@@ -21,3 +21,6 @@ Prompt toolkit scaffold for building and deploying agent prompts.
 ## Scripts
 - `npm run build` – copy `src/prompts` to `dist` with optional prefixing.
 - `npm run deploy:codex` – rebuild then copy `dist` contents to the configured Codex prompt directory.
+- `npm run lint` – lint TypeScript sources with ESLint.
+- `npm run lint:fix` – lint and auto-fix issues where possible.
+- `npm run format` – format files with Prettier using repo settings.

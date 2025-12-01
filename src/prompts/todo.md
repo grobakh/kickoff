@@ -102,9 +102,16 @@ Scan for the almost the similar names of the Task.
 ## 4. Log
 0. Log file only append only! NEVER remove any existing record from it!
 
-1.  - Append an entry to `$META_DIR/LOG.md` including:
+1. Log record to the  `$META_DIR/LOG.md` when PLAN is ready.
+    - Date/time (if practical).
+    - TASK-SLUG=`$TASK-SLUG`.
+    - TASK=`$TASK`.
+    - Short description of the plan.
+
+2. After completing a stepAppend an entry to `$META_DIR/LOG.md` including:
    - Date/time (if practical).
-   - TASK=$TASK-SLUG.
+   - TASK-SLUG=`$TASK-SLUG`.
+   - TASK=`$TASK`.
    - Step identifier or short description.
    - Files touched and a short summary of the change.
      Example:
