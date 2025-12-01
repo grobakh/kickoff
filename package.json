@@ -7,7 +7,7 @@
     "build": "tsx scripts/build.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
-    "format": "prettier \"**/*\" --ignore-unknown",
+    "format": "prettier --write \"**/*\" --ignore-unknown",
     "deploy:codex": "npm run build --silent && tsx scripts/deploy-codex.ts",
     "test": "echo \"No tests yet\""
   },
