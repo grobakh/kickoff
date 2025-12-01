@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+coverage/
+
+# Environment and editor files
+.env
+.env.local
+.idea/
+.vscode/
+.npmrc
