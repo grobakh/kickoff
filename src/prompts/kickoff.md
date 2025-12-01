@@ -22,10 +22,10 @@ Your goal is to:
 
 2. Within `$META_DIR`, treat the following as canonical files (stateless context pack):
    - `$META_DIR/PROJECT.md` – project purpose and architecture overview.
-   - `$META_DIR/CODESTYLE.md` – code style, conventions, and structure.
+   - `$META_DIR/CODESTYLE.md` – code style, conventions, and structure. Catch contributor's vibe. Contributor's Manifest.
    - `$META_DIR/LOG.md` – high-level history of agent work.
    - `$META_DIR/STRUCTURE.md` – compact directory map (depth 2–3) with brief roles; skip generated/third-party folders.
-   - `$META_DIR/WORKFLOWS.md` – Paradigma of working in project. The ways contributor think and work in this project. Catch contributor's vibe. Contributor's Manifest.
+   - `$META_DIR/WORKFLOWS.md` – Paradigma of working in project. The ways contributor work in this project. 
    - `$META_DIR/CONFIG.md` – key configuration knobs (tooling settings, env vars, defaults, important config file locations).
    - `$META_DIR/DEPENDENCIES.md` – notable external/business dependencies and where they come from (dependency manifests, external services, unusual packages).
 
@@ -152,6 +152,13 @@ Do not delete useful existing content; update and extend instead. Prefer concise
      - new component
      - new feature
      - new module
+     
+     ## Contributor's Manifest 
+     - catch vibe of the project.
+     - is the code transparent, universal, or not?
+     - is it generalized or specialized.
+     - do we use complex approaches like IOC, DI, patterns of coding.
+     - what can other say about project looking and contributing to it from the glance.
 
      ## Enforced rules
      ```
@@ -166,7 +173,7 @@ Do not delete useful existing content; update and extend instead. Prefer concise
 
 5. Update additional meta files:
    - `$META_DIR/STRUCTURE.md`: compact tree (depth 2–3), annotate key folders; exclude `node_modules`, `.git`, build outputs.
-   - `$META_DIR/WORKFLOWS.md`: Paradigma of working in project. The ways contributor think and work in this project. Catch contributor's vibe. Contributor's Manifest.
+   - `$META_DIR/WORKFLOWS.md`: Paradigma of working in project. The ways contributor works in this project.
    - `$META_DIR/CONFIG.md`: highlight important config files and key settings (language targets, strictness, path aliases, ignore patterns, env variables, default paths).
    - `$META_DIR/DEPENDENCIES.md`: summarize notable external dependencies and their sources:
      - Dependency manifests (any ecosystem) and where to find them.
