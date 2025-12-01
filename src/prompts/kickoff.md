@@ -1,7 +1,7 @@
 ---
 name: kickoff
-description: Analyze the repository and prepare project + codestyle context
-argument-hint: $META_DIR=".meta"
+description: Analyze the repository and produce a stateless context pack in the meta dir
+argument-hint: [META_DIR=".kickoff"]
 ---
 
 You are working in a repository that may define additional rules in AGENTS.md.
@@ -10,15 +10,17 @@ Your goal is to:
 
 - Discover how this project works and how it is structured.
 - Build or update documentation in the project’s meta directory.
-- Load this context into the current session so future tasks follow the project’s way.
+- Capture a **compressed but comprehensive** context pack in `$META_DIR` so later agents can resume statelessly without re-scanning the repo.
+- Surface the project’s coding rules and structure so downstream tasks mirror how real contributors work.
 
 ## 0. Meta directory and files
 
 1. Determine the meta directory, preferring this order:
-   - If `.meta/` exists, use it as `$META_DIR`.
-   - Otherwise, create `.meta/` and use it as `$META_DIR`.
+   - If the user supplies `META_DIR`, use it.
+   - Else use `.kickoff`.
+   - If that directory does not exist, create it.
 
-2. Within `$META_DIR`, treat the following as canonical files:
+2. Within `$META_DIR`, treat the following as canonical files (this is the stateless context pack):
    - `$META_DIR/PROJECT.md` – project purpose and architecture overview.
    - `$META_DIR/CODESTYLE.md` – code style, conventions, and structure.
    - `$META_DIR/LOG.md` – high-level history of agent work.
@@ -28,14 +30,14 @@ Your goal is to:
    - `$META_DIR/CODESTYLE.md`
    - `$META_DIR/LOG.md`
 
-Do not delete useful existing content; update and extend instead.
+Do not delete useful existing content; update and extend instead. Prefer concise bullet points that let a future agent load context quickly.
 
 ## 1. Understand docs and existing meta
 
 1. Recursively scan documentation directories if they exist:
    - `.doc/`, `.spec/`
    - you can try to read from `doc/`, `spec/` but be carefull - it can be source code, not documentation folders.
-2. From these, infer:
+2. From these, infer (and record in `$META_DIR`):
    - What the project does (domain, main use cases).
    - Any explicit architecture or process descriptions.
    - Important workflows and commands.
@@ -146,6 +148,8 @@ Do not delete useful existing content; update and extend instead.
 
    - In Code style force rules part update how to enforce formatting utils,
      like prettier, lint fix, etc so new written code by agent will be aligned with existing code base.
+
+   - Capture repo-specific naming/placement patterns that help agents generate code indistinguishable from project contributors.
 
 ## 3. Log the kickoff
 

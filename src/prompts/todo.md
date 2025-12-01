@@ -1,7 +1,7 @@
 ---
 name: todo
-description: Plan and execute a task with a resumable checklist and log
-argument-hint: TASK=<short-name> $META_DIR=".meta"
+description: Plan and execute a task with a stateless, resumable checklist and log
+argument-hint: TASK=<short-name> [META_DIR=".kickoff"]
 ---
 
 You are working in a repository that may define additional rules in AGENTS.md.
@@ -13,13 +13,15 @@ Your goals are to:
 - Understand project and load project context.
 - Understand the task and scope.
 - Create or reuse a detailed, **resumable** plan for `$TASK`.
+- Persist concise task context in `$META_DIR` so later agents can resume statelessly without redoing discovery.
 - Execute the plan step by step.
 - Log progress and optionally stage changes, but **never commit** without explicit instruction.
 
 ## 0. Meta directory and context
 
 1. Determine the meta directory as in kickoff:
-   - Prefer `.meta/` if it exists, else create `.meta/`.
+   - Use user-supplied `META_DIR` if provided.
+   - Otherwise, default to `.kickoff`). Create it if missing.
    - Call it `$META_DIR`.
 
 2. Read all relevant `AGENTS.md` and then load, if present:
@@ -33,6 +35,8 @@ Your goals are to:
 
 4. Load context from `$META_DIR` files. Load context from other folders/files mentioned in them.
 5. load context from documentiion mentioned in `$META_DIR/PROJECT.md`, and if not enough Recursively scan documentation directories if they exist (.doc/, .spec/)
+
+Treat `$META_DIR` as the persistent stateless memory for this task—keep it concise, current, and sufficient for an agent to resume without re-scanning the repo.
 
 ## 1. Clarify the task before planning
 

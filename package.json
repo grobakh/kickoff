@@ -1,7 +1,7 @@
 {
   "name": "kickoff",
   "version": "1.0.0",
-  "description": "Prompt toolkit and automation for agent deployments.",
+  "description": "Faster feature delivery by guiding agents to work like contributors",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsx scripts/build.ts",

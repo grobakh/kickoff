@@ -1,6 +1,14 @@
-# Kickoff
+# Kickoff – Stateless Context Toolkit
 
-Prompt toolkit scaffold for building and deploying agent prompts.
+Goal: speed up feature delivery by letting agents ship changes task-by-task like real contributors—matching project structure, style, and rules.
+
+How it works: Kickoff’s prompts and helper scripts build a **stateless context pack** (PROJECT/CODESTYLE/PLAN/LOG) so agents can resume work without re-scanning the repo, then deploy the prompts to your agent runtime.
+
+## Stateless context
+
+- `src/prompts/kickoff.md` scans the repo and writes PROJECT/CODESTYLE/LOG into `.kickoff/`.
+- `src/prompts/todo.md` drives tasks with resumable PLAN/LOG entries stored alongside the kickoff files.
+- `.kickoff/` is the canonical context pack—keep it concise and current to enable stateless handoffs.
 
 ## Setup
 
