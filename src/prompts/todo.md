@@ -1,7 +1,7 @@
 ---
 name: todo
 description: Plan and execute a task with a stateless, resumable checklist and log
-argument-hint: TASK=<short-name> [META_DIR=".kickoff"]
+argument-hint: TASK=<short-name>
 ---
 
 You are working in a repository that may define additional rules in AGENTS.md.
@@ -13,34 +13,31 @@ Your goals are to:
 - Understand project and load project context.
 - Understand the task and scope.
 - Create or reuse a detailed, **resumable** plan for `$TASK`.
-- Persist concise task context in `$META_DIR` so later agents can resume statelessly without redoing discovery.
+- Persist concise task context in `.kickoff` so later agents can resume statelessly without redoing discovery.
 - Execute the plan step by step.
 - Log progress and optionally stage changes, but **never commit** without explicit instruction.
 
 ## 0. Meta directory and context
 
-1. Determine the meta directory as in kickoff:
-   - Use user-supplied `META_DIR` if provided.
-   - Otherwise, default to `.kickoff`). Create it if missing.
-   - Call it `$META_DIR`.
+1. Use `.kickoff` as the meta directory; create it if missing.
 
 2. Read all relevant `AGENTS.md` and then load, if present:
-   - `$META_DIR/PROJECT.md`
-   - `$META_DIR/CODESTYLE.md`
-   - `$META_DIR/STRUCTURE.md`
-   - `$META_DIR/WORKFLOWS.md`
-   - `$META_DIR/CONFIG.md`
-   - `$META_DIR/DEPENDENCIES.md`
-   - `$META_DIR/PLAN-{$TASK-SLUG}.md`
-   - `$META_DIR/LOG.md`
+   - `.kickoff/PROJECT.md`
+   - `.kickoff/CODESTYLE.md`
+   - `.kickoff/STRUCTURE.md`
+   - `.kickoff/WORKFLOWS.md`
+   - `.kickoff/CONFIG.md`
+   - `.kickoff/DEPENDENCIES.md`
+   - `.kickoff/PLAN-{$TASK-SLUG}.md`
+   - `.kickoff/LOG.md`
 
-3. If `$META_DIR/PROJECT.md` or `$META_DIR/CODESTYLE.md` are missing:
+3. If `.kickoff/PROJECT.md` or `.kickoff/CODESTYLE.md` are missing:
    - EXECUTE a `kickoff` prompt before CONTINUE.
 
-4. Load context from `$META_DIR` files. Load context from other folders/files mentioned in them.
-5. Load context from documentation mentioned in `$META_DIR/PROJECT.md`; if not enough, recursively scan documentation directories if they exist (.doc/, .spec/).
+4. Load context from `.kickoff` files. Load context from other folders/files mentioned in them.
+5. Load context from documentation mentioned in `.kickoff/PROJECT.md`; if not enough, recursively scan documentation directories if they exist (.doc/, .spec/).
 
-Treat `$META_DIR` as the persistent stateless memory for this task—keep it concise, current, and sufficient for an agent to resume without re-scanning the repo.
+Treat `.kickoff` as the persistent stateless memory for this task—keep it concise, current, and sufficient for an agent to resume without re-scanning the repo.
 
 ## 1. Clarify the task before planning
 
@@ -62,7 +59,7 @@ Before writing or modifying any plan for `$TASK`:
 
 ## 2. Create or update a detailed, resumable plan
 
-The plan for `$TASK` lives in `$META_DIR/PLAN-{$TASK-SLUG}.md` as a checklist.
+The plan for `$TASK` lives in `.kickoff/PLAN-{$TASK-SLUG}.md` as a checklist.
 Scan for the almost the similar names of the Task.
 
 1. If the file does not exist, create it with at least this structure:
@@ -99,11 +96,11 @@ Scan for the almost the similar names of the Task.
 
 ## 3. Execute the plan step by step (resumable)
 
-1. Determine the current step as the first checklist item with [ ] in `$META_DIR/PLAN-{$TASK-SLUG}.md`.
+1. Determine the current step as the first checklist item with [ ] in `.kickoff/PLAN-{$TASK-SLUG}.md`.
 
 2. For the current step:
 
-- Use the understanding in `$META_DIR/PROJECT.md` and `$META_DIR/CODESTYLE.md` to choose where to make changes and how to name things.
+- Use the understanding in `.kickoff/PROJECT.md` and `.kickoff/CODESTYLE.md` to choose where to make changes and how to name things.
 
 - Prefer existing patterns for:
 
@@ -117,19 +114,19 @@ Scan for the almost the similar names of the Task.
 
 3. After completing a step:
 
-- Update `$META_DIR/PLAN-{$TASK-SLUG}.md` to mark that step as [x].
+- Update `.kickoff/PLAN-{$TASK-SLUG}.md` to mark that step as [x].
 
 ## 4. Log
 
 0. Log file only append only! NEVER remove any existing record from it!
 
-1. Log record to the `$META_DIR/LOG.md` when PLAN is ready.
+1. Log record to the `.kickoff/LOG.md` when PLAN is ready.
     - Date/time (if practical).
     - TASK-SLUG=`{$TASK-SLUG}`.
     - TASK=`$TASK`.
     - Short description of the plan.
 
-2. After completing a stepAppend an entry to `$META_DIR/LOG.md` including:
+2. After completing a stepAppend an entry to `.kickoff/LOG.md` including:
     - Date/time (if practical).
     - TASK-SLUG=`{$TASK-SLUG}`.
     - TASK=`$TASK`.
@@ -154,7 +151,7 @@ Scan for the almost the similar names of the Task.
 - Implement it, update the plan and log, and stage changes as above.
 2.  If the session is interrupted and this prompt is invoked again with the same $TASK:
 
-- Re-read `$META_DIR/PLAN-{$TASK-SLUG}.md` and `$META_DIR/LOG.md`.
+- Re-read `.kickoff/PLAN-{$TASK-SLUG}.md` and `.kickoff/LOG.md`.
 - Identify the first [ ] step.
 - Resume from that step rather than starting a new plan.
 
@@ -163,5 +160,5 @@ Scan for the almost the similar names of the Task.
 - Respect existing tools and configs (Prettier, ESLint, TypeScript, test frameworks).
 - Keep changes and logical units of work small and focused.
 - If something is unclear or risky, ask me before making large or breaking changes.
-- Treat `$META_DIR/PROJECT.md` and `$META_DIR/CODESTYLE.md` as the source of truth
+- Treat `.kickoff/PROJECT.md` and `.kickoff/CODESTYLE.md` as the source of truth
   for project meaning, architecture, and style once they exist.
