@@ -27,6 +27,10 @@ Your goals are to:
 2. Read all relevant `AGENTS.md` and then load, if present:
    - `$META_DIR/PROJECT.md`
    - `$META_DIR/CODESTYLE.md`
+   - `$META_DIR/STRUCTURE.md`
+   - `$META_DIR/WORKFLOWS.md`
+   - `$META_DIR/CONFIG.md`
+   - `$META_DIR/DEPENDENCIES.md`
    - `$META_DIR/PLAN-{$TASK-SLUG}.md`
    - `$META_DIR/LOG.md`
 
@@ -34,7 +38,7 @@ Your goals are to:
    - EXECUTE a `kickoff` prompt before CONTINUE.
 
 4. Load context from `$META_DIR` files. Load context from other folders/files mentioned in them.
-5. load context from documentiion mentioned in `$META_DIR/PROJECT.md`, and if not enough Recursively scan documentation directories if they exist (.doc/, .spec/)
+5. Load context from documentation mentioned in `$META_DIR/PROJECT.md`; if not enough, recursively scan documentation directories if they exist (.doc/, .spec/).
 
 Treat `$META_DIR` as the persistent stateless memory for this task—keep it concise, current, and sufficient for an agent to resume without re-scanning the repo.
 
