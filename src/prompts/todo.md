@@ -25,9 +25,9 @@ Your goals are to:
    - `.kickoff/PROJECT.md`
    - `.kickoff/CODESTYLE.md`
    - `.kickoff/STRUCTURE.md`
-   - `.kickoff/WORKFLOWS.md`
    - `.kickoff/CONFIG.md`
    - `.kickoff/DEPENDENCIES.md`
+   - `.kickoff/ROLES.md`
    - `.kickoff/PLAN-{$TASK-SLUG}.md`
    - `.kickoff/LOG.md`
 
@@ -94,6 +94,13 @@ Scan for the almost the similar names of the Task.
 
 - Finding the first [ ] step and continuing from there.
 
+## 2.5 Validate plan with user!
+- Print your Plan to user
+- If on previous step user answered YOLO - skip clarification and go to 3. Execution immidately.
+- In all other cases - ask user to validate plan
+- If user is not satisfied, ask user to clarify
+- If user is satisfied, continue
+
 ## 3. Execute the plan step by step (resumable)
 
 1. Determine the current step as the first checklist item with [ ] in `.kickoff/PLAN-{$TASK-SLUG}.md`.
@@ -154,6 +161,13 @@ Scan for the almost the similar names of the Task.
 - Re-read `.kickoff/PLAN-{$TASK-SLUG}.md` and `.kickoff/LOG.md`.
 - Identify the first [ ] step.
 - Resume from that step rather than starting a new plan.
+
+## 7. Finish
+
+1. When all plan is executed print obvious message and report about execution.
+2. Ask user to commit changes.
+3. Ask user if we want to start TODO prompt again.
+4. If yes run this TODO prompt from the beggining.
 
 ## 7. General rules
 

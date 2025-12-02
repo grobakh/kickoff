@@ -21,18 +21,18 @@ Your goal is to:
    - `.kickoff/CODESTYLE.md` – code style, conventions, and structure. Catch contributor's vibe. Contributor's Manifest.
    - `.kickoff/LOG.md` – high-level history of agent work.
    - `.kickoff/STRUCTURE.md` – compact directory map (depth 2–3) with brief roles; skip generated/third-party folders.
-   - `.kickoff/WORKFLOWS.md` – Paradigma of working in project. The ways contributor work in this project. 
    - `.kickoff/CONFIG.md` – key configuration knobs (tooling settings, env vars, defaults, important config file locations).
    - `.kickoff/DEPENDENCIES.md` – notable external/business dependencies and where they come from (dependency manifests, external services, unusual packages).
+   - `.kickoff/ROLES.md` – business actors/roles and access expectations (project-wide and per application).
 
 3. Read all `AGENTS.md` files that apply (global and in the current repo path), then read any existing:
    - `.kickoff/PROJECT.md`
    - `.kickoff/CODESTYLE.md`
    - `.kickoff/LOG.md`
    - `.kickoff/STRUCTURE.md`
-   - `.kickoff/WORKFLOWS.md`
    - `.kickoff/CONFIG.md`
    - `.kickoff/DEPENDENCIES.md`
+   - `.kickoff/ROLES.md`
 
 Do not delete useful existing content; update and extend instead. Prefer concise bullet points that let a future agent load context quickly.
 
@@ -41,11 +41,12 @@ Do not delete useful existing content; update and extend instead. Prefer concise
 1. Recursively scan documentation directories if they exist:
    - `.doc/`, `.spec/`
    - you can try to read from `doc/`, `spec/` but be carefull - it can be source code, not documentation folders.
-2. From these, infer (and record in `.kickoff`):
+2. From these, infer (and record in `.kickoff` in corresponding meta files):
    - What the project does (domain, main use cases).
    - Any explicit architecture or process descriptions.
    - Important workflows and commands.
    - External/business dependencies or integrations (APIs, services, SDKs) and where defined (dependency manifests, configs).
+   - Business actors, role definitions, and access rules (who can do what).
    - Catch how contributor "thinks" and paradigma of workin in project. Extract Manifest of contributor.
 
 3. Update `.kickoff/PROJECT.md`:
@@ -169,12 +170,12 @@ Do not delete useful existing content; update and extend instead. Prefer concise
 
 5. Update additional meta files:
    - `.kickoff/STRUCTURE.md`: compact tree (depth 2–3), annotate key folders; exclude `node_modules`, `.git`, build outputs.
-   - `.kickoff/WORKFLOWS.md`: Paradigma of working in project. The ways contributor works in this project.
    - `.kickoff/CONFIG.md`: highlight important config files and key settings (language targets, strictness, path aliases, ignore patterns, env variables, default paths).
    - `.kickoff/DEPENDENCIES.md`: summarize notable external dependencies and their sources:
      - Dependency manifests (any ecosystem) and where to find them.
      - External services/APIs/SDKs, credentials required, and purpose.
      - Unusual or business-critical packages or tooling that shape behavior.
+   - `.kickoff/ROLES.md`: Business actors, role definitions, and access rules (who can do what). 
 
 ## 3. Log the kickoff
 
