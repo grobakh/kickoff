@@ -1,11 +1,11 @@
 ---
 name: todo
 description: Plan and execute a task with a stateless, resumable checklist and log
-argument-hint: TASK=<short-name>
 ---
 
 You are working in a repository that may define additional rules in AGENTS.md.
-The current task identifier is `$TASK-SLUG`, a concise snake_case alias derived from `$TASK`
+After loading the project context, explicitly ask: **“What task should we work on?”**
+Set `$TASK` to the user's answer, derive `$TASK-SLUG` as a concise snake_case alias, and use that slug for plan/log filenames and references.
 
 Your goals are to:
 
@@ -43,19 +43,21 @@ Treat `.kickoff` as the persistent stateless memory for this task—keep it conc
 
 Before writing or modifying any plan for `$TASK`:
 
-0. Define `$TASK-SLUG` before planning:
+0. Ask the user clearly: **“What task should we work on?”** Capture the description as `$TASK`.
+
+1. Define `$TASK-SLUG` before planning:
    - Derive a short snake_case slug from `$TASK` (drop filler words, keep it brief).
    - If the task description is long or ambiguous, propose or ask for a slug instead of using the full text.
    - Use `$TASK-SLUG` for plan filenames (`PLAN-{$TASK-SLUG}.md`), logs, and references.
 
-1. Ask me targeted questions to clarify:
+2. Ask me targeted questions to clarify:
    - What exactly needs to be done for `$TASK`.
    - Success criteria / acceptance conditions.
    - Scope boundaries (what is in / out).
    - Constraints (performance, backwards compatibility, deadlines, tech limitations).
    - Any specific files, modules, or tickets/issues you should consider.
 
-2. Do **not** generate or run a plan until you have this information or get YOLO signal(y).
+3. Do **not** generate or run a plan until you have this information or get YOLO signal(y).
 
 ## 2. Create or update a detailed, resumable plan
 
@@ -166,8 +168,8 @@ Scan for the almost the similar names of the Task.
 
 1. When all plan is executed print obvious message and report about execution.
 2. Ask user to commit changes.
-3. Ask user if we want to start TODO prompt again.
-4. If yes run this TODO prompt from the beggining.
+3. Ask clearly for the next task: **“What should we tackle next?”**
+4. If a new task is provided, set `$TASK` to that description, derive a fresh `$TASK-SLUG`, and loop this prompt.
 
 ## 7. General rules
 
