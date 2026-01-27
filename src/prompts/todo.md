@@ -2,19 +2,17 @@
 name: todo
 description: Plan and execute a task with a stateless, resumable checklist and log
 ---
-
 You are working in a repository that may define additional rules in AGENTS.md.
-After loading the project context, explicitly ask: **“What task should we work on?”**
-Set `$TASK` to the user's answer, derive `$TASK-SLUG` as a concise snake_case alias, and use that slug for plan/log filenames and references.
 
 Your goals are to:
 
 - Understand general rules and per project rules.
 - Understand project and load project context.
 - Understand the task and scope.
-- Create or reuse a detailed, **resumable** plan for `$TASK`.
-- Persist concise task context in `.kickoff` so later agents can resume statelessly without redoing discovery.
+- Create or reuse a detailed plan for task.
+- Persist concise task context in `.kickoff`
 - Execute the plan step by step.
+- Verify execution by running possible verification steps for the project: typechecks, build, tests, etc.
 - Log progress and optionally stage changes, but **never commit** without explicit instruction.
 
 ## 0. Meta directory and context
@@ -28,7 +26,6 @@ Your goals are to:
    - `.kickoff/CONFIG.md`
    - `.kickoff/DEPENDENCIES.md`
    - `.kickoff/ROLES.md`
-   - `.kickoff/PLAN-{$TASK-SLUG}.md`
    - `.kickoff/LOG.md`
 
 3. If `.kickoff/PROJECT.md` or `.kickoff/CODESTYLE.md` are missing:
@@ -41,17 +38,17 @@ Treat `.kickoff` as the persistent stateless memory for this task—keep it conc
 
 ## 1. Clarify the task before planning
 
-Before writing or modifying any plan for `$TASK`:
+Before writing or modifying any plan for the task:
 
-0. Ask the user clearly: **“What task should we work on?”** Capture the description as `$TASK`.
+0. Only ask **“What task should we work on?”** if no task was supplied; otherwise, confirm understanding of the provided task instead of re-prompting.
 
-1. Define `$TASK-SLUG` before planning:
-   - Derive a short snake_case slug from `$TASK` (drop filler words, keep it brief).
+1. Define TASK-SLUG before planning:
+   - Derive a short snake_case slug from task (drop filler words, keep it brief).
    - If the task description is long or ambiguous, propose or ask for a slug instead of using the full text.
-   - Use `$TASK-SLUG` for plan filenames (`PLAN-{$TASK-SLUG}.md`), logs, and references.
+   - Use TASK-SLUG for plan logs and references.
 
 2. Ask me targeted questions to clarify:
-   - What exactly needs to be done for `$TASK`.
+   - What exactly needs to be done for task.
    - Success criteria / acceptance conditions.
    - Scope boundaries (what is in / out).
    - Constraints (performance, backwards compatibility, deadlines, tech limitations).
@@ -61,19 +58,20 @@ Before writing or modifying any plan for `$TASK`:
 
 ## 2. Create or update a detailed, resumable plan
 
-The plan for `$TASK` lives in `.kickoff/PLAN-{$TASK-SLUG}.md` as a checklist.
+The plan for task lives in `.kickoff/PLAN-{TASK-SLUG}.md` as a checklist.
 Scan for the almost the similar names of the Task.
 
 1. If the file does not exist, create it with at least this structure:
 
    ```markdown
-   # Plan for $TASK
+   # Plan for TASK
+   Task: ...
 
    Status: in-progress
 
    ## Context
 
-   - Short description of the task, constraints, and any references.
+   - Short description of the task, context, constraints, and any references.
 
    ## Steps
 
@@ -105,7 +103,7 @@ Scan for the almost the similar names of the Task.
 
 ## 3. Execute the plan step by step (resumable)
 
-1. Determine the current step as the first checklist item with [ ] in `.kickoff/PLAN-{$TASK-SLUG}.md`.
+1. Determine the current step as the first checklist item with [ ] in `.kickoff/PLAN-{TASK-SLUG}.md`.
 
 2. For the current step:
 
@@ -123,7 +121,7 @@ Scan for the almost the similar names of the Task.
 
 3. After completing a step:
 
-- Update `.kickoff/PLAN-{$TASK-SLUG}.md` to mark that step as [x].
+- Update `.kickoff/PLAN-{TASK-SLUG}.md` to mark that step as [x].
 
 ## 4. Log
 
@@ -131,14 +129,12 @@ Scan for the almost the similar names of the Task.
 
 1. Log record to the `.kickoff/LOG.md` when PLAN is ready.
     - Date/time (if practical).
-    - TASK-SLUG=`{$TASK-SLUG}`.
-    - TASK=`$TASK`.
+    - TASK-SLUG=`{TASK-SLUG}`.
     - Short description of the plan.
 
 2. After completing a stepAppend an entry to `.kickoff/LOG.md` including:
     - Date/time (if practical).
-    - TASK-SLUG=`{$TASK-SLUG}`.
-    - TASK=`$TASK`.
+    - TASK-SLUG=`{TASK-SLUG}`.
     - Step identifier or short description.
     - Files touched and a short summary of the change.
       Example:
@@ -158,18 +154,19 @@ Scan for the almost the similar names of the Task.
 
 1.  - Move to the next [ ] step.
 - Implement it, update the plan and log, and stage changes as above.
-2.  If the session is interrupted and this prompt is invoked again with the same $TASK:
 
-- Re-read `.kickoff/PLAN-{$TASK-SLUG}.md` and `.kickoff/LOG.md`.
-- Identify the first [ ] step.
-- Resume from that step rather than starting a new plan.
+## Before finish
+1. Run possible validation steps:
+   - typechecks
+   - builds
+   - tests
 
 ## 7. Finish
 
 1. When all plan is executed print obvious message and report about execution.
 2. Ask user to commit changes.
 3. Ask clearly for the next task: **“What should we tackle next?”**
-4. If a new task is provided, set `$TASK` to that description, derive a fresh `$TASK-SLUG`, and loop this prompt.
+4. If a new task is provided, set task to that description, derive a fresh `TASK-SLUG`, and loop this prompt.
 
 ## 7. General rules
 

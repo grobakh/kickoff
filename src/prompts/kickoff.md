@@ -196,7 +196,4 @@ Do not delete useful existing content; update and extend instead. Prefer concise
 
 ## ON FINISH
 
-User can forget to run `/prompts:kickoff-todo` prompt to start the task.
-
-1.  Prompt user to run `/prompts:kickoff-todo` prompt to start working on his the task.
-2.  If he just inputs something - ask him if it is a task and if yes run this task with `/prompts:kickoff-todo` prompt.
+1. Try to run some tests to check if project is consistent and typechecked
